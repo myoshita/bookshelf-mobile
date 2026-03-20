@@ -24,14 +24,13 @@ import com.myoshita.bookshelf.feature.top.Top
 import com.myoshita.bookshelf.feature.top.topViewModelModule
 import com.myoshita.bookshelf.repository.bookRepositoryModule
 import com.myoshita.bookshelf.theme.AppTheme
-import org.jetbrains.compose.ui.tooling.preview.Preview
 import org.koin.compose.KoinApplication
 import org.koin.dsl.KoinAppDeclaration
+import org.koin.dsl.koinConfiguration
 
 
 @OptIn(ExperimentalCoilApi::class)
 @Composable
-@Preview
 fun App(koinAppDeclaration: KoinAppDeclaration = {}) {
     val navController = rememberNavController()
     setSingletonImageLoaderFactory { context ->
@@ -43,31 +42,34 @@ fun App(koinAppDeclaration: KoinAppDeclaration = {}) {
 
     AppTheme {
         KoinApplication(
-            application = {
-                koinAppDeclaration()
-                modules(
-                    apiModule,
-                    dataBaseModule,
-                    platformDataBaseModule(),
-                    bookRepositoryModule,
-                    topViewModelModule,
-                    barcodeScanViewModelModule,
-                    bulkViewModelModule,
-                    bookDetailViewModeModule,
-                    bookEditViewModelModule,
-                    manualBookSearchViewModelModule,
-                    manualBookRegistrationViewModelModule,
-                    searchResultViewModelModule,
-                )
+            configuration = koinConfiguration(
+                declaration = {
+                    koinAppDeclaration()
+                    modules(
+                        apiModule,
+                        dataBaseModule,
+                        platformDataBaseModule(),
+                        bookRepositoryModule,
+                        topViewModelModule,
+                        barcodeScanViewModelModule,
+                        bulkViewModelModule,
+                        bookDetailViewModeModule,
+                        bookEditViewModelModule,
+                        manualBookSearchViewModelModule,
+                        manualBookRegistrationViewModelModule,
+                        searchResultViewModelModule,
+                    )
+                }
+            ),
+            content = {
+                NavHost(
+                    navController = navController,
+                    startDestination = Top,
+                    modifier = Modifier.fillMaxSize()
+                ) {
+                    appNavGraph(navController)
+                }
             }
-        ) {
-            NavHost(
-                navController = navController,
-                startDestination = Top,
-                modifier = Modifier.fillMaxSize()
-            ) {
-                appNavGraph(navController)
-            }
-        }
+        )
     }
 }

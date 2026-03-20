@@ -15,13 +15,13 @@ import androidx.compose.material3.TextButton
 import androidx.compose.material3.TopAppBar
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
-import androidx.lifecycle.compose.collectAsStateWithLifecycle
-import com.myoshita.bookshelf.model.Book
 import com.myoshita.bookshelf.feature.common.BookEditableList
+import com.myoshita.bookshelf.model.Book
 import com.myoshita.bookshelf.util.plus
 import io.github.vinceglb.filekit.compose.rememberFilePickerLauncher
 import io.github.vinceglb.filekit.core.PickerMode
@@ -37,7 +37,7 @@ fun ManualBookRegistrationScreen(
     viewModel: ManualBookRegistrationViewModel = koinViewModel(),
     onNavigateUp: () -> Unit,
 ) {
-    val uiState by viewModel.uiState.collectAsStateWithLifecycle()
+    val uiState by viewModel.uiState.collectAsState()
     val launcher = rememberFilePickerLauncher(
         type = PickerType.Image,
         mode = PickerMode.Single,

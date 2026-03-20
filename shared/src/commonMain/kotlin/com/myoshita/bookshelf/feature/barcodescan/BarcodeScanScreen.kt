@@ -25,6 +25,7 @@ import androidx.compose.material3.Text
 import androidx.compose.material3.TextField
 import androidx.compose.material3.TopAppBar
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
@@ -32,12 +33,12 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clipToBounds
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.unit.dp
-import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import coil3.compose.AsyncImage
 import coil3.compose.rememberAsyncImagePainter
 import com.myoshita.bookshelf.util.isIsbn
 import kotlinx.serialization.Serializable
 import org.koin.compose.viewmodel.koinViewModel
+import org.publicvalue.multiplatform.qrcode.CameraPosition
 import org.publicvalue.multiplatform.qrcode.CodeType
 import org.publicvalue.multiplatform.qrcode.ScannerWithPermissions
 
@@ -49,7 +50,7 @@ fun BarcodeScanScreen(
     viewModel: BarcodeScanViewModel = koinViewModel(),
     onNavigateUp: () -> Unit,
 ) {
-    val uiState by viewModel.uiState.collectAsStateWithLifecycle()
+    val uiState by viewModel.uiState.collectAsState()
 
     BarcodeScanScreen(
         uiState = uiState,
@@ -108,6 +109,8 @@ fun BarcodeScanScreen(
                                     }
                                 },
                                 types = listOf(CodeType.EAN13),
+                                cameraPosition = CameraPosition.BACK,
+                                enableTorch = false,
                                 modifier = Modifier
                                     .height(150.dp)
                                     .clipToBounds()

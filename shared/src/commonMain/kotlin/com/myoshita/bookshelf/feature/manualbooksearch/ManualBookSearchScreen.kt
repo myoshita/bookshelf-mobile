@@ -40,6 +40,7 @@ import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBar
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
@@ -49,7 +50,6 @@ import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
-import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import coil3.compose.AsyncImage
 import coil3.compose.rememberAsyncImagePainter
 import com.myoshita.bookshelf.model.BookInfo
@@ -64,7 +64,7 @@ fun ManualBookSearchScreen(
     viewModel: ManualBookSearchViewModel = koinViewModel(),
     onNavigateUp: () -> Unit,
 ) {
-    val uiState by viewModel.uiState.collectAsStateWithLifecycle()
+    val uiState by viewModel.uiState.collectAsState()
     val snackbarHostState = remember {
         SnackbarHostState()
     }

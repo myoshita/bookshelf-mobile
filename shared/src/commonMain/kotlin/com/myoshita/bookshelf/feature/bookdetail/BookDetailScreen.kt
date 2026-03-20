@@ -31,6 +31,7 @@ import androidx.compose.material3.TextButton
 import androidx.compose.material3.TopAppBar
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.layout.ContentScale
@@ -39,7 +40,6 @@ import androidx.compose.ui.text.AnnotatedString
 import androidx.compose.ui.text.style.TextDecoration
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
-import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import bookshelf.shared.generated.resources.Res
 import bookshelf.shared.generated.resources.placeholder
 import coil3.compose.AsyncImage
@@ -66,7 +66,7 @@ fun BookDetailScreen(
     navigateToTagSearch: (BookTag) -> Unit,
 ) {
     val viewModel = koinViewModel<BookDetailViewModel> { parametersOf(bookId) }
-    val uiState by viewModel.uiState.collectAsStateWithLifecycle()
+    val uiState by viewModel.uiState.collectAsState()
 
     LaunchedEffect(uiState.navigateToTop) {
         if (uiState.navigateToTop) {

@@ -32,7 +32,6 @@ import androidx.compose.material.icons.filled.Person
 import androidx.compose.material.icons.filled.PhotoCamera
 import androidx.compose.material.icons.filled.Search
 import androidx.compose.material.icons.filled.Settings
-import androidx.compose.material.icons.filled.Storage
 import androidx.compose.material3.AssistChip
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.FloatingActionButton
@@ -54,6 +53,7 @@ import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
@@ -64,15 +64,14 @@ import androidx.compose.ui.focus.FocusRequester
 import androidx.compose.ui.focus.focusRequester
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.window.Dialog
-import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import bookshelf.shared.generated.resources.Res
 import bookshelf.shared.generated.resources.icon_book_2
+import com.myoshita.bookshelf.feature.common.BookGridItem
 import com.myoshita.bookshelf.model.Book
 import com.myoshita.bookshelf.model.Sort
 import com.myoshita.bookshelf.model.SortKey
 import com.myoshita.bookshelf.model.SortOrder
 import com.myoshita.bookshelf.model.Suggestion
-import com.myoshita.bookshelf.feature.common.BookGridItem
 import com.myoshita.bookshelf.util.plus
 import kotlinx.serialization.Serializable
 import org.jetbrains.compose.resources.vectorResource
@@ -91,7 +90,7 @@ fun TopScreen(
     navigateToWordSearchResult: (String) -> Unit,
     navigateToSuggestionSearchResult: (Suggestion) -> Unit,
 ) {
-    val uiState by viewModel.uiState.collectAsStateWithLifecycle()
+    val uiState by viewModel.uiState.collectAsState()
     var isVisibleSortModal by remember { mutableStateOf(false) }
     var isVisibleSettingDialog by remember { mutableStateOf(false) }
 

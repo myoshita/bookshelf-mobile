@@ -1,6 +1,6 @@
 package com.myoshita.bookshelf.model
 
-import kotlinx.datetime.Clock
+import kotlin.time.Clock
 
 data class BookInfo(
     val title: String,

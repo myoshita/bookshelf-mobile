@@ -20,15 +20,15 @@ import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBar
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
-import androidx.lifecycle.compose.collectAsStateWithLifecycle
+import com.myoshita.bookshelf.feature.common.BookGridItem
 import com.myoshita.bookshelf.model.Book
 import com.myoshita.bookshelf.model.BookTag
-import com.myoshita.bookshelf.feature.common.BookGridItem
 import kotlinx.serialization.Serializable
 import org.koin.compose.viewmodel.koinViewModel
 import org.koin.core.parameter.parametersOf
@@ -48,7 +48,7 @@ fun SearchResultScreen(
     navigateToBookDetail: (Book) -> Unit,
     viewModel: SearchResultViewModel = koinViewModel { parametersOf(route) },
 ) {
-    val uiState by viewModel.uiState.collectAsStateWithLifecycle()
+    val uiState by viewModel.uiState.collectAsState()
 
     SearChResultScreen(
         uiState = uiState,
