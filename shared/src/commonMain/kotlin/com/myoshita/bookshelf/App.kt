@@ -10,9 +10,9 @@ import coil3.ImageLoader
 import coil3.annotation.ExperimentalCoilApi
 import coil3.compose.setSingletonImageLoaderFactory
 import coil3.util.DebugLogger
-import com.myoshita.bookshelf.api.apiModule
-import com.myoshita.bookshelf.db.dataBaseModule
-import com.myoshita.bookshelf.db.platformDataBaseModule
+import com.myoshita.bookshelf.data.api.apiModule
+import com.myoshita.bookshelf.data.db.dataBaseModule
+import com.myoshita.bookshelf.data.db.platformDataBaseModule
 import com.myoshita.bookshelf.feature.barcodescan.barcodeScanViewModelModule
 import com.myoshita.bookshelf.feature.bookdetail.bookDetailViewModeModule
 import com.myoshita.bookshelf.feature.bookedit.bookEditViewModelModule
@@ -22,7 +22,7 @@ import com.myoshita.bookshelf.feature.manualbooksearch.manualBookSearchViewModel
 import com.myoshita.bookshelf.feature.searchresult.searchResultViewModelModule
 import com.myoshita.bookshelf.feature.top.Top
 import com.myoshita.bookshelf.feature.top.topViewModelModule
-import com.myoshita.bookshelf.repository.bookRepositoryModule
+import com.myoshita.bookshelf.data.repository.bookRepositoryModule
 import com.myoshita.bookshelf.theme.AppTheme
 import org.koin.compose.KoinApplication
 import org.koin.dsl.KoinAppDeclaration

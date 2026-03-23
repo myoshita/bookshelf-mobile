@@ -1,20 +1,18 @@
-package com.myoshita.bookshelf
+package com.myoshita.bookshelf.data.api
 
 import io.ktor.client.HttpClient
-import io.ktor.client.engine.android.Android
+import io.ktor.client.engine.darwin.Darwin
 import io.ktor.client.plugins.HttpTimeout
 import io.ktor.client.plugins.contentnegotiation.ContentNegotiation
 import io.ktor.serialization.kotlinx.json.json
 import kotlinx.serialization.json.Json
 
 actual fun httpClient(): HttpClient {
-    return HttpClient(Android) {
+    return HttpClient(Darwin) {
         install(ContentNegotiation) {
-            val json = Json {
+            json(Json {
                 ignoreUnknownKeys = true
-                explicitNulls = false
-            }
-            json(json)
+            })
         }
         install(HttpTimeout) {
             requestTimeoutMillis = 5000

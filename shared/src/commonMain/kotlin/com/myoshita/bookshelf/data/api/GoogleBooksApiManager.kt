@@ -1,6 +1,5 @@
-package com.myoshita.bookshelf.api
+package com.myoshita.bookshelf.data.api
 
-import com.myoshita.bookshelf.httpClient
 import io.github.aakira.napier.Napier
 import io.ktor.client.call.body
 import io.ktor.client.request.get

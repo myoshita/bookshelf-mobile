@@ -1,12 +1,12 @@
-package com.myoshita.bookshelf.db
+package com.myoshita.bookshelf.data.db
 
 import androidx.room.Entity
 import androidx.room.ForeignKey
 import androidx.room.Index
 
 @Entity(
-    tableName = "book_author_relations",
-    primaryKeys = ["bookId", "authorId"],
+    tableName = "book_tag_relations",
+    primaryKeys = ["bookId", "tagId"],
     foreignKeys = [
         ForeignKey(
             entity = BookEntity::class,
@@ -15,15 +15,15 @@ import androidx.room.Index
             onDelete = ForeignKey.CASCADE,
         ),
         ForeignKey(
-            entity = AuthorEntity::class,
+            entity = TagEntity::class,
             parentColumns = ["id"],
-            childColumns = ["authorId"],
+            childColumns = ["tagId"],
             onDelete = ForeignKey.CASCADE,
         )
     ],
-    indices = [Index("authorId")],
+    indices = [Index("tagId")],
 )
-data class BookAuthorRelations(
+data class BookTagRelations(
     val bookId: Int,
-    val authorId: Int,
+    val tagId: Int,
 )

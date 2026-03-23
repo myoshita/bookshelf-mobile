@@ -1,4 +1,4 @@
-package com.myoshita.bookshelf.db
+package com.myoshita.bookshelf.data.db
 
 import androidx.room.Dao
 import androidx.room.Insert

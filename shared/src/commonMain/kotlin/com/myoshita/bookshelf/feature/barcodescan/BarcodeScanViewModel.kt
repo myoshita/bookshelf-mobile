@@ -4,7 +4,7 @@ import androidx.compose.runtime.Immutable
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.myoshita.bookshelf.model.BookInfo
-import com.myoshita.bookshelf.repository.BookRepository
+import com.myoshita.bookshelf.data.repository.BookRepository
 import com.myoshita.bookshelf.util.isIsbn
 import io.github.aakira.napier.Napier
 import kotlinx.coroutines.flow.MutableStateFlow

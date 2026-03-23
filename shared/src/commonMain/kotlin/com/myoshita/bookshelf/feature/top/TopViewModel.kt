@@ -8,7 +8,7 @@ import com.myoshita.bookshelf.model.Suggestion
 import com.myoshita.bookshelf.model.calculateSimilarity
 import com.myoshita.bookshelf.model.sortedBy
 import com.myoshita.bookshelf.model.toSuggestions
-import com.myoshita.bookshelf.repository.BookRepository
+import com.myoshita.bookshelf.data.repository.BookRepository
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.update

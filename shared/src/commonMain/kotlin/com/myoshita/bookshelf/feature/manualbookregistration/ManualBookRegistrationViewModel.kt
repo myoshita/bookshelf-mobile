@@ -4,7 +4,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.myoshita.bookshelf.model.Author
 import com.myoshita.bookshelf.model.Book
-import com.myoshita.bookshelf.repository.BookRepository
+import com.myoshita.bookshelf.data.repository.BookRepository
 import io.github.vinceglb.filekit.core.PlatformFile
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow

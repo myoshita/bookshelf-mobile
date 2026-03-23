@@ -1,12 +1,12 @@
-package com.myoshita.bookshelf.repository
+package com.myoshita.bookshelf.data.repository
 
-import com.myoshita.bookshelf.api.GoogleBooksApiManager
-import com.myoshita.bookshelf.api.NdlApiManager
-import com.myoshita.bookshelf.db.AuthorEntity
-import com.myoshita.bookshelf.db.BookEntity
-import com.myoshita.bookshelf.db.BookWithAuthorsAndTags
-import com.myoshita.bookshelf.db.BookshelfDataBase
-import com.myoshita.bookshelf.db.TagEntity
+import com.myoshita.bookshelf.data.api.GoogleBooksApiManager
+import com.myoshita.bookshelf.data.api.NdlApiManager
+import com.myoshita.bookshelf.data.db.AuthorEntity
+import com.myoshita.bookshelf.data.db.BookEntity
+import com.myoshita.bookshelf.data.db.BookWithAuthorsAndTags
+import com.myoshita.bookshelf.data.db.BookshelfDataBase
+import com.myoshita.bookshelf.data.db.TagEntity
 import com.myoshita.bookshelf.exception.BookNotFoundException
 import com.myoshita.bookshelf.model.Author
 import com.myoshita.bookshelf.model.AuthorInfo

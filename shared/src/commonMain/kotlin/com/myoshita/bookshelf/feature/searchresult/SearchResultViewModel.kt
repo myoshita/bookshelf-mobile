@@ -4,7 +4,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.myoshita.bookshelf.model.Book
 import com.myoshita.bookshelf.model.similarity
-import com.myoshita.bookshelf.repository.BookRepository
+import com.myoshita.bookshelf.data.repository.BookRepository
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.update

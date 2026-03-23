@@ -4,7 +4,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.myoshita.bookshelf.exception.BookNotFoundException
 import com.myoshita.bookshelf.model.BookInfo
-import com.myoshita.bookshelf.repository.BookRepository
+import com.myoshita.bookshelf.data.repository.BookRepository
 import io.github.aakira.napier.Napier
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.delay

@@ -1,4 +1,4 @@
-package com.myoshita.bookshelf.api
+package com.myoshita.bookshelf.data.api
 
 import org.koin.dsl.module
 
