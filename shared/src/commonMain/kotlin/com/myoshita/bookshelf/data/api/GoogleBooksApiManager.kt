@@ -1,16 +1,24 @@
 package com.myoshita.bookshelf.data.api
 
 import io.github.aakira.napier.Napier
+import io.ktor.client.HttpClient
 import io.ktor.client.call.body
 import io.ktor.client.request.get
 import io.ktor.client.statement.bodyAsText
 import io.ktor.http.HttpStatusCode
 import kotlinx.serialization.Serializable
+import org.koin.dsl.module
 
-class GoogleBooksApiManager {
-    private val client = httpClient()
+val googleBooksApiManagerModule = module {
+    single<GoogleBooksApiManager> { GoogleBooksApiManagerImpl(get()) }
+}
 
-    suspend fun getGoogleBook(isbn: String): GoogleBook {
+interface GoogleBooksApiManager : BookApiManager<GoogleBook>
+
+private class GoogleBooksApiManagerImpl(
+    private val client: HttpClient,
+) : GoogleBooksApiManager {
+    override suspend fun getBook(isbn: String): GoogleBook {
         val url = "https://www.googleapis.com/books/v1/volumes?q=isbn:$isbn&langRestrict=ja"
         try {
             val response = client.get(url)

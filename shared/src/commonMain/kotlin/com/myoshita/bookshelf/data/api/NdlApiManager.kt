@@ -1,6 +1,7 @@
 package com.myoshita.bookshelf.data.api
 
 import io.github.aakira.napier.Napier
+import io.ktor.client.HttpClient
 import io.ktor.client.request.get
 import io.ktor.client.statement.bodyAsText
 import io.ktor.http.HttpStatusCode
@@ -13,9 +14,17 @@ import nl.adaptivity.xmlutil.serialization.XML
 import nl.adaptivity.xmlutil.serialization.XmlElement
 import nl.adaptivity.xmlutil.serialization.XmlSerialName
 import nl.adaptivity.xmlutil.serialization.XmlValue
+import org.koin.dsl.module
 
-class NdlApiManager {
-    private val client = httpClient()
+val ndlApiManagerModule = module {
+    single<NdlApiManager> { NdlApiManagerImpl(get()) }
+}
+
+interface NdlApiManager : BookApiManager<SearchRetrieveResponse>
+
+private class NdlApiManagerImpl(
+    private val client: HttpClient,
+) : NdlApiManager {
 
     @OptIn(ExperimentalXmlUtilApi::class)
     private val xml = XML {
@@ -28,7 +37,7 @@ class NdlApiManager {
     }
 
 
-    suspend fun getSearchRetrieveResponse(isbn: String): SearchRetrieveResponse {
+    override suspend fun getBook(isbn: String): SearchRetrieveResponse {
         val url =
             "https://ndlsearch.ndl.go.jp/api/sru?operation=searchRetrieve&recordSchema=dcndl&onlyBib=true&recordPacking=xml&query=isbn=$isbn"
         try {

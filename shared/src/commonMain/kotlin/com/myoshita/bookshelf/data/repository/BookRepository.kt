@@ -48,8 +48,8 @@ internal class BookRepositoryImpl(
         }
 
     override suspend fun searchFromIsbn(isbn: String): BookInfo = supervisorScope {
-        val googleBookDeferred = async { googleBooksApiManager.getGoogleBook(isbn) }
-        val ndlBookDeferred = async { ndlApiManager.getSearchRetrieveResponse(isbn) }
+        val googleBookDeferred = async { googleBooksApiManager.getBook(isbn) }
+        val ndlBookDeferred = async { ndlApiManager.getBook(isbn) }
 
         val googleBook = try {
             googleBookDeferred.await().items?.firstOrNull()

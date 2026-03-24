@@ -10,7 +10,9 @@ import coil3.ImageLoader
 import coil3.annotation.ExperimentalCoilApi
 import coil3.compose.setSingletonImageLoaderFactory
 import coil3.util.DebugLogger
-import com.myoshita.bookshelf.data.api.apiModule
+import com.myoshita.bookshelf.data.api.googleBooksApiManagerModule
+import com.myoshita.bookshelf.data.api.httpClientModule
+import com.myoshita.bookshelf.data.api.ndlApiManagerModule
 import com.myoshita.bookshelf.data.db.dataBaseModule
 import com.myoshita.bookshelf.data.db.platformDataBaseModule
 import com.myoshita.bookshelf.feature.barcodescan.barcodeScanViewModelModule
@@ -46,7 +48,9 @@ fun App(koinAppDeclaration: KoinAppDeclaration = {}) {
                 declaration = {
                     koinAppDeclaration()
                     modules(
-                        apiModule,
+                        httpClientModule,
+                        googleBooksApiManagerModule,
+                        ndlApiManagerModule,
                         dataBaseModule,
                         platformDataBaseModule(),
                         bookRepositoryModule,
