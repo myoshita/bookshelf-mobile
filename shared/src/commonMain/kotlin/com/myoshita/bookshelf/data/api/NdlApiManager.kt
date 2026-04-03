@@ -36,7 +36,6 @@ private class NdlApiManagerImpl(
         }
     }
 
-
     override suspend fun getBook(isbn: String): SearchRetrieveResponse {
         val url =
             "https://ndlsearch.ndl.go.jp/api/sru?operation=searchRetrieve&recordSchema=dcndl&onlyBib=true&recordPacking=xml&query=isbn=$isbn"
@@ -60,7 +59,7 @@ private class NdlApiManagerImpl(
 @SerialName("searchRetrieveResponse")
 data class SearchRetrieveResponse(
     @XmlElement(true)
-    val records: Records?
+    val records: Records?,
 ) {
     @Serializable
     @SerialName("records")
@@ -73,7 +72,7 @@ data class SearchRetrieveResponse(
     @SerialName("record")
     data class Record(
         @XmlElement(true)
-        val recordData: RecordData
+        val recordData: RecordData,
     )
 
     @Serializable
@@ -87,7 +86,7 @@ data class SearchRetrieveResponse(
     @XmlSerialName("RDF", "http://www.w3.org/1999/02/22-rdf-syntax-ns#", "rdf")
     data class Rdf(
         @XmlElement(true)
-        val bibResource: List<BibResource>
+        val bibResource: List<BibResource>,
     )
 
     @Serializable
@@ -149,7 +148,7 @@ data class SearchRetrieveResponse(
             }
             val isbn = isbn10.take(9)
             var operator = 1
-            val sum = ("978${isbn}").sumOf {
+            val sum = ("978$isbn").sumOf {
                 val digit = it.digitToInt()
                 val tmp = operator
                 operator = if (operator == 1) 3 else 1
@@ -163,7 +162,7 @@ data class SearchRetrieveResponse(
         @XmlSerialName("title", "http://purl.org/dc/elements/1.1/", "dc")
         data class Title(
             @XmlElement(true)
-            val description: Description
+            val description: Description,
         ) {
             @Serializable
             @XmlSerialName("Description", "http://www.w3.org/1999/02/22-rdf-syntax-ns#", "rdf")
@@ -206,7 +205,7 @@ data class SearchRetrieveResponse(
         @XmlSerialName("creator", "http://purl.org/dc/terms/", "dcterms")
         data class Creator(
             @XmlElement(true)
-            val description: Agent
+            val description: Agent,
         ) {
             @Serializable
             @XmlSerialName("Agent", "http://xmlns.com/foaf/0.1/", "foaf")
@@ -252,7 +251,7 @@ data class SearchRetrieveResponse(
         @XmlSerialName("volume", "http://ndl.go.jp/dcndl/terms/", "dcndl")
         data class Volume(
             @XmlElement(true)
-            val description: Description
+            val description: Description,
         ) {
             @Serializable
             @XmlSerialName("Description", "http://www.w3.org/1999/02/22-rdf-syntax-ns#", "rdf")

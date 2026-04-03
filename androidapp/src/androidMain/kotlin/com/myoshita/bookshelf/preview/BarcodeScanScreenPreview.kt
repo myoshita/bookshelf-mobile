@@ -2,9 +2,9 @@ package com.myoshita.bookshelf.preview
 
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.tooling.preview.Preview
-import com.myoshita.bookshelf.theme.AppTheme
 import com.myoshita.bookshelf.feature.barcodescan.BarcodeScanScreen
 import com.myoshita.bookshelf.feature.barcodescan.BarcodeScanUiState
+import com.myoshita.bookshelf.theme.AppTheme
 
 @Preview
 @Composable

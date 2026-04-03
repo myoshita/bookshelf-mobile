@@ -35,13 +35,13 @@ fun BookGridItem(
     Card(
         onClick = onClick,
         shape = RectangleShape,
-        modifier = modifier
+        modifier = modifier,
     ) {
         Column {
             Box(
                 modifier = Modifier
                     .weight(1f)
-                    .fillMaxWidth()
+                    .fillMaxWidth(),
             ) {
                 AsyncImage(
                     model = book.thumbnailUrl,
@@ -49,7 +49,7 @@ fun BookGridItem(
                     error = painterResource(Res.drawable.placeholder),
                     contentDescription = null,
                     contentScale = ContentScale.FillHeight,
-                    modifier = Modifier.matchParentSize()
+                    modifier = Modifier.matchParentSize(),
                 )
                 if (book.isSigned) {
                     Text(
@@ -60,7 +60,7 @@ fun BookGridItem(
                         modifier = Modifier
                             .background(Color.Yellow.copy(alpha = 0.8f))
                             .fillMaxWidth()
-                            .align(Alignment.BottomCenter)
+                            .align(Alignment.BottomCenter),
                     )
                 }
             }
@@ -72,7 +72,7 @@ fun BookGridItem(
                 overflow = TextOverflow.Ellipsis,
                 modifier = Modifier
                     .padding(horizontal = 4.dp)
-                    .padding(top = 4.dp)
+                    .padding(top = 4.dp),
             )
             Text(
                 text = book.authorText(),
@@ -81,7 +81,7 @@ fun BookGridItem(
                 overflow = TextOverflow.Ellipsis,
                 modifier = Modifier
                     .padding(horizontal = 4.dp)
-                    .padding(bottom = 4.dp)
+                    .padding(bottom = 4.dp),
             )
         }
     }

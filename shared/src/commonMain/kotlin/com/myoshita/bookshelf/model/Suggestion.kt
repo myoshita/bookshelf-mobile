@@ -26,14 +26,20 @@ fun Suggestion.calculateSimilarity(searchQuery: String): Double {
 
     return when {
         normalizedSearchQuery == normalizedName -> 1.0
+
         normalizedSearchQuery == normalizedTranscription -> 1.0
+
         normalizedName.startsWith(normalizedSearchQuery) -> 0.9
+
         normalizedTranscription.startsWith(normalizedSearchQuery) -> 0.9
+
         else -> {
             if (normalizedSearchQuery.length >= 3) {
                 when {
                     normalizedName.contains(normalizedSearchQuery) -> 0.7
+
                     normalizedTranscription.contains(normalizedSearchQuery) -> 0.7
+
                     else -> maxOf(
                         Fuzzy.jaroWinklerSimilarity(normalizedName, normalizedSearchQuery),
                         Fuzzy.jaroWinklerSimilarity(normalizedTranscription, normalizedSearchQuery),

@@ -112,7 +112,7 @@ private fun BookDetailScreen(
                     IconButton(
                         onClick = {
                             onNavigateUp()
-                        }
+                        },
                     ) {
                         Icon(
                             imageVector = Icons.AutoMirrored.Filled.ArrowBack,
@@ -139,9 +139,9 @@ private fun BookDetailScreen(
                             contentDescription = null,
                         )
                     }
-                }
+                },
             )
-        }
+        },
     ) { contentPadding ->
         if (book != null) {
             val contents = listOf(
@@ -208,7 +208,7 @@ private fun BookDetailHeader(
                 placeholder = painterResource(Res.drawable.placeholder),
                 error = painterResource(Res.drawable.placeholder),
                 contentScale = ContentScale.FillWidth,
-                modifier = Modifier.width(150.dp)
+                modifier = Modifier.width(150.dp),
             )
             Column(
                 verticalArrangement = Arrangement.spacedBy(8.dp),
@@ -218,7 +218,7 @@ private fun BookDetailHeader(
                     maxLines = 4,
                     overflow = TextOverflow.Ellipsis,
                     style = MaterialTheme.typography.titleLarge,
-                    modifier = Modifier.clickable { onClickTitle(book.buildTitleText()) }
+                    modifier = Modifier.clickable { onClickTitle(book.buildTitleText()) },
                 )
                 FlowRow(
                     verticalArrangement = Arrangement.spacedBy(4.dp),
@@ -276,7 +276,7 @@ private fun BookDetailListItem(
 ) {
     Column(
         verticalArrangement = Arrangement.spacedBy(4.dp),
-        modifier = modifier
+        modifier = modifier,
     ) {
         Text(
             text = title,
@@ -289,7 +289,7 @@ private fun BookDetailListItem(
             modifier = Modifier.clickable(
                 enabled = onClick != null,
                 onClick = onClick ?: {},
-            )
+            ),
         )
     }
 }
@@ -313,6 +313,6 @@ private fun BookDeletionConfirmDialog(
         },
         text = {
             Text(text = "本を削除しますか？")
-        }
+        },
     )
 }

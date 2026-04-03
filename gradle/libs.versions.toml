@@ -20,6 +20,7 @@ junit = "4.13.2"
 kotlin = "2.3.20"
 coroutines = "1.10.2"
 kotlinxDatetime = "0.7.1"
+ktlint = "1.8.0"
 ktor = "3.4.1"
 easyqrscan = "0.7.1"
 material3 = "1.9.0"
@@ -34,6 +35,7 @@ coin = "4.2.0"
 room = "2.8.4"
 sqlite = "2.6.2"
 ksp = "2.3.6"
+spotless = "8.4.0"
 
 [libraries]
 compose-components-resources = { module = "org.jetbrains.compose.components:components-resources", version.ref = "componentsResources" }
@@ -82,6 +84,9 @@ koin-core = { module = "io.insert-koin:koin-core" }
 koin-compose = { module = "io.insert-koin:koin-compose" }
 koin-compose-viewmodel = { module = "io.insert-koin:koin-compose-viewmodel" }
 
+# Gradle plugins
+spotlessGradlePlugin = { module = "com.diffplug.spotless:spotless-plugin-gradle", version.ref = "spotless" }
+
 [plugins]
 androidApplication = { id = "com.android.application", version.ref = "agp" }
 androidLibrary = { id = "com.android.library", version.ref = "agp" }
@@ -92,3 +97,4 @@ kotlinMultiplatform = { id = "org.jetbrains.kotlin.multiplatform", version.ref =
 kotlinSerialization = { id = "org.jetbrains.kotlin.plugin.serialization", version.ref = "kotlin" }
 kotlin-android = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
 ksp = { id = "com.google.devtools.ksp", version.ref = "ksp" }
+spotless = { id = "com.diffplug.spotless", version.ref = "spotless" }

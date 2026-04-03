@@ -117,20 +117,20 @@ private fun BulkBarcodeScanScreen(
                         IconButton(
                             onClick = {
                                 onNavigateUp()
-                            }
+                            },
                         ) {
                             Icon(
                                 imageVector = Icons.AutoMirrored.Filled.ArrowBack,
                                 contentDescription = null,
                             )
                         }
-                    }
+                    },
                 )
                 if (uiState.isLoading || uiState.isRegistering) {
                     LinearProgressIndicator(
                         modifier = Modifier
                             .fillMaxWidth()
-                            .align(Alignment.BottomCenter)
+                            .align(Alignment.BottomCenter),
                     )
                 }
             }
@@ -142,11 +142,11 @@ private fun BulkBarcodeScanScreen(
             Box(
                 modifier = Modifier
                     .padding(innerPadding)
-                    .fillMaxSize()
+                    .fillMaxSize(),
             ) {
                 LazyColumn(
                     contentPadding = PaddingValues(bottom = 100.dp),
-                    modifier = Modifier.fillMaxSize()
+                    modifier = Modifier.fillMaxSize(),
                 ) {
                     stickyHeader {
                         Column(modifier = Modifier.background(MaterialTheme.colorScheme.surface)) {
@@ -163,7 +163,7 @@ private fun BulkBarcodeScanScreen(
                                 enableTorch = false,
                                 modifier = Modifier
                                     .height(150.dp)
-                                    .clipToBounds()
+                                    .clipToBounds(),
                             )
                             TextButton(
                                 onClick = onClickManualSearch,
@@ -172,7 +172,6 @@ private fun BulkBarcodeScanScreen(
                                 Text("ISBNを手動で入力する")
                             }
                         }
-
                     }
                     items(uiState.bookInfos) { bookInfo ->
                         BookItem(
@@ -183,7 +182,7 @@ private fun BulkBarcodeScanScreen(
                             bookInfo = bookInfo,
                             modifier = Modifier.clickable {
                                 onClickBookInfo(bookInfo)
-                            }
+                            },
                         )
                     }
                 }
@@ -194,12 +193,12 @@ private fun BulkBarcodeScanScreen(
                     modifier = Modifier
                         .align(Alignment.BottomCenter)
                         .padding(bottom = 16.dp)
-                        .fillMaxWidth()
+                        .fillMaxWidth(),
                 ) {
                     Text(text = "登録")
                 }
             }
-        }
+        },
     )
 }
 
@@ -226,7 +225,7 @@ private fun BookItem(
                 contentDescription = null,
                 error = error,
                 contentScale = ContentScale.FillWidth,
-                modifier = Modifier.width(60.dp)
+                modifier = Modifier.width(60.dp),
             )
             Column(
                 verticalArrangement = Arrangement.spacedBy(8.dp),
@@ -241,24 +240,22 @@ private fun BookItem(
                     text = bookInfo.authors.joinToString(", ") { it.name },
                     maxLines = 1,
                     overflow = TextOverflow.Ellipsis,
-                    style = MaterialTheme.typography.labelSmall
+                    style = MaterialTheme.typography.labelSmall,
                 )
             }
         }
     }
 }
 
-private fun buildTitleText(bookInfo: BookInfo): String {
-    return buildString {
-        append(bookInfo.title)
-        if (bookInfo.volume != null) {
-            append(" ${bookInfo.volume}")
-        }
-        if (bookInfo.edition != null) {
-            append("<${bookInfo.edition}>")
-        }
-        if (bookInfo.seriesTitle.isNotEmpty()) {
-            append("(${bookInfo.seriesTitle})")
-        }
+private fun buildTitleText(bookInfo: BookInfo): String = buildString {
+    append(bookInfo.title)
+    if (bookInfo.volume != null) {
+        append(" ${bookInfo.volume}")
+    }
+    if (bookInfo.edition != null) {
+        append("<${bookInfo.edition}>")
+    }
+    if (bookInfo.seriesTitle.isNotEmpty()) {
+        append("(${bookInfo.seriesTitle})")
     }
 }

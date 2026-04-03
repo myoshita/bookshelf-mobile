@@ -84,7 +84,7 @@ private fun ManualBookRegistrationScreen(
                         IconButton(
                             onClick = {
                                 onNavigateUp()
-                            }
+                            },
                         ) {
                             Icon(
                                 imageVector = Icons.AutoMirrored.Filled.ArrowBack,
@@ -97,22 +97,21 @@ private fun ManualBookRegistrationScreen(
                             onClick = {
                                 onClickRegister(bookStateValue)
                             },
-                            enabled = bookStateValue != Book.Empty
+                            enabled = bookStateValue != Book.Empty,
                         ) {
                             Text("登録")
                         }
-
-                    }
+                    },
                 )
                 if (uiState.isLoading) {
                     LinearProgressIndicator(
                         modifier = Modifier
                             .fillMaxWidth()
-                            .align(Alignment.BottomCenter)
+                            .align(Alignment.BottomCenter),
                     )
                 }
             }
-        }
+        },
     ) { contentPadding ->
         BookEditableList(
             bookStateValue = bookStateValue,

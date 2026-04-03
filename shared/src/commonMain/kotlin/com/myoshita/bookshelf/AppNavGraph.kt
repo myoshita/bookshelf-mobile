@@ -52,7 +52,7 @@ fun NavGraphBuilder.appNavGraph(navController: NavHostController) {
         BarcodeScanScreen(
             onNavigateUp = {
                 navController.navigateUp()
-            }
+            },
         )
     }
     composable<BulkBarcodeScan> {
@@ -66,7 +66,7 @@ fun NavGraphBuilder.appNavGraph(navController: NavHostController) {
                         inclusive = true
                     }
                 }
-            }
+            },
         )
     }
     composable<BookDetail> { backstackEntry ->
@@ -87,7 +87,7 @@ fun NavGraphBuilder.appNavGraph(navController: NavHostController) {
             navigateToTagSearch = {
                 val route = SearchResult(tag = it)
                 navController.navigate(route)
-            }
+            },
         )
     }
     composable<BookEdit> { backstackEntry ->
@@ -96,21 +96,21 @@ fun NavGraphBuilder.appNavGraph(navController: NavHostController) {
             bookId = bookEdit.bookId,
             onNavigateUp = {
                 navController.navigateUp()
-            }
+            },
         )
     }
     composable<ManualBookSearch> {
         ManualBookSearchScreen(
             onNavigateUp = {
                 navController.navigateUp()
-            }
+            },
         )
     }
     composable<ManualBookRegistration> {
         ManualBookRegistrationScreen(
             onNavigateUp = {
                 navController.navigateUp()
-            }
+            },
         )
     }
     composable<SearchResult> { backstackEntry ->
@@ -123,7 +123,7 @@ fun NavGraphBuilder.appNavGraph(navController: NavHostController) {
             navigateToBookDetail = {
                 val route = BookDetail(it.id)
                 navController.navigate(route)
-            }
+            },
         )
     }
 }

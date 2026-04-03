@@ -106,7 +106,7 @@ private fun BookEditScreen(
                         IconButton(
                             onClick = {
                                 onNavigateUp()
-                            }
+                            },
                         ) {
                             Icon(
                                 imageVector = Icons.AutoMirrored.Filled.ArrowBack,
@@ -120,25 +120,24 @@ private fun BookEditScreen(
                                 onClick = {
                                     onClickUpdate(bookStateValue)
                                 },
-                                enabled = book != bookStateValue
+                                enabled = book != bookStateValue,
                             ) {
                                 Text("更新")
                             }
                         }
-
-                    }
+                    },
                 )
                 if (uiState.isLoading) {
                     LinearProgressIndicator(
                         modifier = Modifier.fillMaxWidth()
-                            .align(alignment = Alignment.BottomCenter)
+                            .align(alignment = Alignment.BottomCenter),
                     )
                 }
             }
         },
         snackbarHost = {
             SnackbarHost(hostState = snackbarHostState)
-        }
+        },
     ) { contentPadding ->
         if (bookStateValue != null) {
             BookEditableList(

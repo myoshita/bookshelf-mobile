@@ -27,7 +27,7 @@ interface BookDao {
                 BookAuthorRelations(
                     bookId = bookId.toInt(),
                     authorId = authorId,
-                )
+                ),
             )
         }
         bookWithAuthorsAndTags.tags.forEach {
@@ -36,7 +36,7 @@ interface BookDao {
                 BookTagRelations(
                     bookId = bookId.toInt(),
                     tagId = tagId,
-                )
+                ),
             )
         }
     }
@@ -90,7 +90,7 @@ interface BookDao {
                 BookAuthorRelations(
                     bookId = bookId,
                     authorId = authorId,
-                )
+                ),
             )
         }
 
@@ -101,7 +101,7 @@ interface BookDao {
                 BookTagRelations(
                     bookId = bookId,
                     tagId = tagId,
-                )
+                ),
             )
         }
     }

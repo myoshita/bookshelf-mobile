@@ -66,7 +66,7 @@ data class GoogleBook(
     @Serializable
     data class IndustryIdentifier(
         val type: String,
-        val identifier: String
+        val identifier: String,
     )
 
     @Serializable

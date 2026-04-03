@@ -97,7 +97,7 @@ fun TopScreen(
     Box(
         modifier = Modifier
             .background(MaterialTheme.colorScheme.background)
-            .windowInsetsPadding(WindowInsets.statusBars)
+            .windowInsetsPadding(WindowInsets.statusBars),
     ) {
         TopScreen(
             uiState = uiState,
@@ -123,7 +123,7 @@ fun TopScreen(
                 Column(
                     horizontalAlignment = Alignment.CenterHorizontally,
                     verticalArrangement = Arrangement.spacedBy(8.dp),
-                    modifier = Modifier.padding(16.dp)
+                    modifier = Modifier.padding(16.dp),
                 ) {
                     SingleChoiceSegmentedButtonRow(modifier = Modifier.fillMaxWidth()) {
                         SortKey.entries.forEachIndexed { index, key ->
@@ -159,7 +159,7 @@ fun TopScreen(
                 onDismissRequest = { isVisibleSettingDialog = false },
             ) {
                 Surface(
-                    shape = RoundedCornerShape(28.dp)
+                    shape = RoundedCornerShape(28.dp),
                 ) {
                     Column {
                         IconButton(onClick = { isVisibleSettingDialog = false }) {
@@ -172,7 +172,6 @@ fun TopScreen(
                         }
                     }
                 }
-
             }
         }
     }
@@ -237,7 +236,7 @@ private fun TopScreen(
                         },
                         trailingIcon = {
                             if (expanded) {
-                                if (uiState.searchQuery.isNotEmpty())
+                                if (uiState.searchQuery.isNotEmpty()) {
                                     IconButton(
                                         onClick = { onSearchQueryChange("") },
                                     ) {
@@ -246,6 +245,7 @@ private fun TopScreen(
                                             contentDescription = null,
                                         )
                                     }
+                                }
                             } else {
                                 IconButton(
                                     onClick = onClickSetting,
@@ -258,19 +258,19 @@ private fun TopScreen(
                             }
                         },
                         modifier = Modifier
-                            .focusRequester(focusRequester)
+                            .focusRequester(focusRequester),
                     )
                 },
                 expanded = expanded,
                 onExpandedChange = { expanded = it },
                 modifier = Modifier
                     .fillMaxWidth()
-                    .padding(horizontal = horizontalPadding)
+                    .padding(horizontal = horizontalPadding),
             ) {
                 Column(
                     modifier = Modifier
                         .verticalScroll(rememberScrollState())
-                        .imePadding()
+                        .imePadding(),
                 ) {
                     uiState.suggestions.forEach { suggestion ->
                         ListItem(
@@ -290,7 +290,7 @@ private fun TopScreen(
                             ),
                             modifier = Modifier
                                 .fillMaxWidth()
-                                .clickable { onSearchSuggestion(suggestion) }
+                                .clickable { onSearchSuggestion(suggestion) },
                         )
                         HorizontalDivider()
                     }
@@ -305,7 +305,7 @@ private fun TopScreen(
                 SmallFloatingActionButton(
                     onClick = {
                         onClickManualRegistration()
-                    }
+                    },
                 ) {
                     Icon(
                         imageVector = Icons.Default.Edit,
@@ -315,7 +315,7 @@ private fun TopScreen(
                 FloatingActionButton(
                     onClick = {
                         onClickBarcodeScan()
-                    }
+                    },
                 ) {
                     Icon(
                         imageVector = Icons.Default.PhotoCamera,
@@ -343,11 +343,11 @@ private fun TopScreen(
                     BookGridItem(
                         book = book,
                         onClick = { onClickBook(book) },
-                        modifier = Modifier.height(230.dp)
+                        modifier = Modifier.height(230.dp),
                     )
                 }
             }
-        }
+        },
     )
 }
 
@@ -362,12 +362,12 @@ private fun TopHeader(
         verticalAlignment = Alignment.CenterVertically,
         modifier = modifier
             .fillMaxWidth()
-            .padding(horizontal = 8.dp)
+            .padding(horizontal = 8.dp),
     ) {
         Text(
             text = "$bookCount 冊",
             style = MaterialTheme.typography.titleSmall,
-            modifier = modifier.weight(1f)
+            modifier = modifier.weight(1f),
         )
         AssistChip(
             onClick = onClickSort,
@@ -377,7 +377,7 @@ private fun TopHeader(
                     imageVector = Icons.AutoMirrored.Filled.Sort,
                     contentDescription = null,
                 )
-            }
+            },
         )
     }
 }

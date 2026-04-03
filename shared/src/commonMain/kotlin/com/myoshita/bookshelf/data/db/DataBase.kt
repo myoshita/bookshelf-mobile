@@ -12,13 +12,11 @@ val dataBaseModule = module {
 }
 
 private fun getRoomDatabase(
-    builder: RoomDatabase.Builder<BookshelfDataBase>
-): BookshelfDataBase {
-    return builder
-        .setDriver(BundledSQLiteDriver())
-        .setQueryCoroutineContext(Dispatchers.IO)
-        .build()
-}
+    builder: RoomDatabase.Builder<BookshelfDataBase>,
+): BookshelfDataBase = builder
+    .setDriver(BundledSQLiteDriver())
+    .setQueryCoroutineContext(Dispatchers.IO)
+    .build()
 
 expect fun platformDataBaseModule(): Module
 

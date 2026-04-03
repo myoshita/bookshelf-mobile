@@ -8,7 +8,7 @@ import com.myoshita.bookshelf.model.AuthorInfo
 
 @Entity(
     tableName = "authors",
-    indices = [Index(value = ["name"], unique = true)]
+    indices = [Index(value = ["name"], unique = true)],
 )
 data class AuthorEntity(
     @PrimaryKey(autoGenerate = true)

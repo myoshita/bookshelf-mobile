@@ -2,9 +2,9 @@ package com.myoshita.bookshelf.feature.bulkbarcodescan
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.myoshita.bookshelf.data.repository.BookRepository
 import com.myoshita.bookshelf.exception.BookNotFoundException
 import com.myoshita.bookshelf.model.BookInfo
-import com.myoshita.bookshelf.data.repository.BookRepository
 import io.github.aakira.napier.Napier
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.delay
@@ -94,6 +94,7 @@ class BulkBarcodeScanViewModel(
                         val onDismiss = { _uiState.update { it.copy(bookNotFoundError = null) } }
                         _uiState.update { it.copy(bookNotFoundError = BookNotFoundError(onDismiss)) }
                     }
+
                     else -> {
                         Napier.e("Failed to fetch book info", e)
                     }

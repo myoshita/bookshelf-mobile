@@ -6,7 +6,7 @@ import androidx.room.RoomDatabase
 import org.koin.core.module.Module
 import org.koin.dsl.module
 
-actual fun platformDataBaseModule(): Module  = module {
+actual fun platformDataBaseModule(): Module = module {
     single { DatabaseBuilderFactory(get()).create() }
 }
 
@@ -16,7 +16,7 @@ actual class DatabaseBuilderFactory(private val context: Context) {
         val dbFile = appContext.getDatabasePath("bookshelf.db")
         return Room.databaseBuilder<BookshelfDataBase>(
             context = appContext,
-            name = dbFile.absolutePath
+            name = dbFile.absolutePath,
         )
     }
 }

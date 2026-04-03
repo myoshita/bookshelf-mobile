@@ -15,6 +15,7 @@ import com.myoshita.bookshelf.data.api.httpClientModule
 import com.myoshita.bookshelf.data.api.ndlApiManagerModule
 import com.myoshita.bookshelf.data.db.dataBaseModule
 import com.myoshita.bookshelf.data.db.platformDataBaseModule
+import com.myoshita.bookshelf.data.repository.bookRepositoryModule
 import com.myoshita.bookshelf.feature.barcodescan.barcodeScanViewModelModule
 import com.myoshita.bookshelf.feature.bookdetail.bookDetailViewModeModule
 import com.myoshita.bookshelf.feature.bookedit.bookEditViewModelModule
@@ -24,12 +25,10 @@ import com.myoshita.bookshelf.feature.manualbooksearch.manualBookSearchViewModel
 import com.myoshita.bookshelf.feature.searchresult.searchResultViewModelModule
 import com.myoshita.bookshelf.feature.top.Top
 import com.myoshita.bookshelf.feature.top.topViewModelModule
-import com.myoshita.bookshelf.data.repository.bookRepositoryModule
 import com.myoshita.bookshelf.theme.AppTheme
 import org.koin.compose.KoinApplication
 import org.koin.dsl.KoinAppDeclaration
 import org.koin.dsl.koinConfiguration
-
 
 @OptIn(ExperimentalCoilApi::class)
 @Composable
@@ -63,17 +62,17 @@ fun App(koinAppDeclaration: KoinAppDeclaration = {}) {
                         manualBookRegistrationViewModelModule,
                         searchResultViewModelModule,
                     )
-                }
+                },
             ),
             content = {
                 NavHost(
                     navController = navController,
                     startDestination = Top,
-                    modifier = Modifier.fillMaxSize()
+                    modifier = Modifier.fillMaxSize(),
                 ) {
                     appNavGraph(navController)
                 }
-            }
+            },
         )
     }
 }

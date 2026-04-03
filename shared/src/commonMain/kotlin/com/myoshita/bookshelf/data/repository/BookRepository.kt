@@ -75,7 +75,7 @@ internal class BookRepositoryImpl(
             authors = ndlBibResource?.creators?.map {
                 AuthorInfo(
                     it.description.name,
-                    it.description.transcription.orEmpty()
+                    it.description.transcription.orEmpty(),
                 )
             }
                 ?: googleBook?.volumeInfo?.authors?.map { AuthorInfo(it, "") } ?: emptyList(),
@@ -89,7 +89,7 @@ internal class BookRepositoryImpl(
             thumbnailUrl = createNdlThumbnailUrl(isbn13),
             ndlThumbnailUrl = createNdlThumbnailUrl(isbn13),
             googleBookThumbnailUrl = googleBook?.volumeInfo?.imageLink,
-            aboutUrl = ndlBibResource?.about ?: googleBook?.volumeInfo?.infoLink.orEmpty()
+            aboutUrl = ndlBibResource?.about ?: googleBook?.volumeInfo?.infoLink.orEmpty(),
         )
     }
 
@@ -100,7 +100,7 @@ internal class BookRepositoryImpl(
                     book = BookEntity.from(book),
                     authors = book.authors.map { AuthorEntity.from(it) },
                     tags = emptyList(),
-                )
+                ),
             )
     }
 
@@ -111,22 +111,18 @@ internal class BookRepositoryImpl(
                     book = BookEntity.from(book),
                     authors = book.authors.map { AuthorEntity.from(it) },
                     tags = emptyList(),
-                )
+                ),
             )
     }
 
-    override suspend fun getBook(bookId: Int): Book? {
-        return db.getBookDao()
-            .getBookById(bookId)
-            .map { it?.let { BookWithAuthorsAndTags.transform(it) } }
-            .firstOrNull()
-    }
+    override suspend fun getBook(bookId: Int): Book? = db.getBookDao()
+        .getBookById(bookId)
+        .map { it?.let { BookWithAuthorsAndTags.transform(it) } }
+        .firstOrNull()
 
-    override suspend fun getBookFlow(bookId: Int): Flow<Book?> {
-        return db.getBookDao()
-            .getBookById(bookId)
-            .map { it?.let { BookWithAuthorsAndTags.transform(it) } }
-    }
+    override suspend fun getBookFlow(bookId: Int): Flow<Book?> = db.getBookDao()
+        .getBookById(bookId)
+        .map { it?.let { BookWithAuthorsAndTags.transform(it) } }
 
     override suspend fun deleteBook(bookId: Int) {
         db.getBookDao().delete(bookId)
@@ -138,19 +134,15 @@ internal class BookRepositoryImpl(
                 book = BookEntity.from(book),
                 authors = book.authors.map { AuthorEntity.from(it) },
                 tags = book.tags.map { TagEntity.from(it) },
-            )
+            ),
         )
     }
 
-    override suspend fun getAuthors(): List<Author> {
-        return db.getBookDao()
-            .getAuthors()
-            .map { authors ->
-                authors.map { AuthorEntity.transform(it) }
-            }.firstOrNull() ?: emptyList()
-    }
+    override suspend fun getAuthors(): List<Author> = db.getBookDao()
+        .getAuthors()
+        .map { authors ->
+            authors.map { AuthorEntity.transform(it) }
+        }.firstOrNull() ?: emptyList()
 
-    private fun createNdlThumbnailUrl(isbn: String): String {
-        return "https://ndlsearch.ndl.go.jp/thumbnail/${isbn}.jpg"
-    }
+    private fun createNdlThumbnailUrl(isbn: String): String = "https://ndlsearch.ndl.go.jp/thumbnail/$isbn.jpg"
 }

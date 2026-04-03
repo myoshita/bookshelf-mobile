@@ -7,6 +7,4 @@ fun String.isIsbn(): Boolean {
     return matches(isbn13)
 }
 
-fun String.removeSpaces(): String {
-    return this.replace("[\\s\u3000]+".toRegex(), "")
-}
+fun String.removeSpaces(): String = this.replace("[\\s\u3000]+".toRegex(), "")

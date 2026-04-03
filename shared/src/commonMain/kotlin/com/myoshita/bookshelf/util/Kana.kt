@@ -1,14 +1,12 @@
 package com.myoshita.bookshelf.util
 
 object Kana {
-    fun String.katakanaToHiragana(): String {
-        return this.hankakuToZenkakuKatakana().map {
-            when {
-                it.isKatakana -> it - (FIRST_KATAKANA - FIRST_HIRAGANA)
-                else -> it
-            }
-        }.joinToString("")
-    }
+    fun String.katakanaToHiragana(): String = this.hankakuToZenkakuKatakana().map {
+        when {
+            it.isKatakana -> it - (FIRST_KATAKANA - FIRST_HIRAGANA)
+            else -> it
+        }
+    }.joinToString("")
 
     private val Char.isKatakana: Boolean get() = this in (FIRST_KATAKANA..LAST_KATAKANA)
 
@@ -31,16 +29,38 @@ object Kana {
                     previousChar?.let {
                         val combinedChar = when (char) {
                             'ﾞ' -> when (it) {
-                                'カ' -> 'ガ'; 'キ' -> 'ギ'; 'ク' -> 'グ'; 'ケ' -> 'ゲ'; 'コ' -> 'ゴ'
-                                'サ' -> 'ザ'; 'シ' -> 'ジ'; 'ス' -> 'ズ'; 'セ' -> 'ゼ'; 'ソ' -> 'ゾ'
-                                'タ' -> 'ダ'; 'チ' -> 'ヂ'; 'ツ' -> 'ヅ'; 'テ' -> 'デ'; 'ト' -> 'ド'
-                                'ハ' -> 'バ'; 'ヒ' -> 'ビ'; 'フ' -> 'ブ'; 'ヘ' -> 'ベ'; 'ホ' -> 'ボ'
+                                'カ' -> 'ガ'
+                                'キ' -> 'ギ'
+                                'ク' -> 'グ'
+                                'ケ' -> 'ゲ'
+                                'コ' -> 'ゴ'
+                                'サ' -> 'ザ'
+                                'シ' -> 'ジ'
+                                'ス' -> 'ズ'
+                                'セ' -> 'ゼ'
+                                'ソ' -> 'ゾ'
+                                'タ' -> 'ダ'
+                                'チ' -> 'ヂ'
+                                'ツ' -> 'ヅ'
+                                'テ' -> 'デ'
+                                'ト' -> 'ド'
+                                'ハ' -> 'バ'
+                                'ヒ' -> 'ビ'
+                                'フ' -> 'ブ'
+                                'ヘ' -> 'ベ'
+                                'ホ' -> 'ボ'
                                 else -> it
                             }
+
                             'ﾟ' -> when (it) {
-                                'ハ' -> 'パ'; 'ヒ' -> 'ピ'; 'フ' -> 'プ'; 'ヘ' -> 'ペ'; 'ホ' -> 'ポ'
+                                'ハ' -> 'パ'
+                                'ヒ' -> 'ピ'
+                                'フ' -> 'プ'
+                                'ヘ' -> 'ペ'
+                                'ホ' -> 'ポ'
                                 else -> it
                             }
+
                             else -> it
                         }
                         setLength(length - 1) // 前の文字を削除
@@ -74,6 +94,6 @@ object Kana {
             'ﾜ' to 'ワ', 'ｦ' to 'ヲ', 'ﾝ' to 'ン',
             'ｧ' to 'ァ', 'ｨ' to 'ィ', 'ｩ' to 'ゥ', 'ｪ' to 'ェ', 'ｫ' to 'ォ',
             'ｬ' to 'ャ', 'ｭ' to 'ュ', 'ｮ' to 'ョ', 'ｯ' to 'ッ',
-            'ｰ' to 'ー', 'ﾞ' to '゛', 'ﾟ' to '゜'
+            'ｰ' to 'ー', 'ﾞ' to '゛', 'ﾟ' to '゜',
         )
 }

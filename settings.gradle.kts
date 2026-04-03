@@ -1,7 +1,5 @@
-rootProject.name = "bookshelf"
-enableFeaturePreview("TYPESAFE_PROJECT_ACCESSORS")
-
 pluginManagement {
+    includeBuild("build-logic")
     repositories {
         google {
             mavenContent {
@@ -27,6 +25,9 @@ dependencyResolutionManagement {
         mavenCentral()
     }
 }
+
+rootProject.name = "bookshelf"
+enableFeaturePreview("TYPESAFE_PROJECT_ACCESSORS")
 
 include(":shared")
 include(":androidapp")

@@ -53,7 +53,7 @@ fun SearchResultScreen(
     SearChResultScreen(
         uiState = uiState,
         onNavigateUp = onNavigateUp,
-        onClickBook = navigateToBookDetail
+        onClickBook = navigateToBookDetail,
     )
 }
 
@@ -71,14 +71,14 @@ private fun SearChResultScreen(
                     Text(
                         text = uiState.appBarTitle,
                         maxLines = 1,
-                        overflow = TextOverflow.Ellipsis
+                        overflow = TextOverflow.Ellipsis,
                     )
                 },
                 navigationIcon = {
                     IconButton(
                         onClick = {
                             onNavigateUp()
-                        }
+                        },
                     ) {
                         Icon(
                             imageVector = Icons.AutoMirrored.Default.ArrowBack,
@@ -111,7 +111,7 @@ private fun SearChResultScreen(
                     )
                 }
             }
-        }
+        },
     )
 }
 
@@ -124,7 +124,7 @@ private fun TopHeader(
         verticalAlignment = Alignment.CenterVertically,
         modifier = modifier
             .fillMaxWidth()
-            .padding(horizontal = 8.dp)
+            .padding(horizontal = 8.dp),
     ) {
         Text(
             text = "$bookCount 冊",

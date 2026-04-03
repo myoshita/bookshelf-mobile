@@ -7,7 +7,7 @@ import com.myoshita.bookshelf.model.BookTag
 
 @Entity(
     tableName = "tags",
-    indices = [Index(value = ["name"], unique = true)]
+    indices = [Index(value = ["name"], unique = true)],
 )
 data class TagEntity(
     @PrimaryKey(autoGenerate = true)

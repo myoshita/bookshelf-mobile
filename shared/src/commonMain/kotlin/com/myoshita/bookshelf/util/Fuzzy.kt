@@ -39,9 +39,11 @@ object Fuzzy {
             }
         }
 
-        val jaroSimilarity = (matches / s1Length.toDouble() +
-            matches / s2Length.toDouble() +
-            (matches - transpositions / 2.0) / matches) / 3.0
+        val jaroSimilarity = (
+            matches / s1Length.toDouble() +
+                matches / s2Length.toDouble() +
+                (matches - transpositions / 2.0) / matches
+            ) / 3.0
 
         // Winkler adjustment
         val prefixLength = s1.commonPrefixWith(s2).length.coerceAtMost(4)

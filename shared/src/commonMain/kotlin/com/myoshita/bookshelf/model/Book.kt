@@ -61,9 +61,7 @@ data class Book(
 val Book.isSigned: Boolean
     get() = tags.contains(BookTag.Signed)
 
-fun Book.authorText(): String {
-    return authors.joinToString(", ") { it.name }
-}
+fun Book.authorText(): String = authors.joinToString(", ") { it.name }
 
 fun Book.buildTitleText(
     hasVolume: Boolean = true,
@@ -83,60 +81,54 @@ fun Book.buildTitleText(
 }
 
 @OptIn(FormatStringsInDatetimeFormats::class)
-fun Book.createdDate(): String {
-    return Instant.fromEpochMilliseconds(createdAt).format(
-        DateTimeComponents.Format {
-            byUnicodePattern("yyyy年MM月dd日")
-        }
-    )
-}
+fun Book.createdDate(): String = Instant.fromEpochMilliseconds(createdAt).format(
+    DateTimeComponents.Format {
+        byUnicodePattern("yyyy年MM月dd日")
+    },
+)
 
-fun List<Book>.sortedBy(sort: Sort): List<Book> {
-    return when (sort.order) {
-        SortOrder.Asc -> {
-            when (sort.key) {
-                SortKey.CreatedAt -> sortedBy { it.createdAt }
-                SortKey.Title -> sortedBy { it.title }
-            }
+fun List<Book>.sortedBy(sort: Sort): List<Book> = when (sort.order) {
+    SortOrder.Asc -> {
+        when (sort.key) {
+            SortKey.CreatedAt -> sortedBy { it.createdAt }
+            SortKey.Title -> sortedBy { it.title }
         }
+    }
 
-        SortOrder.Desc -> {
-            when (sort.key) {
-                SortKey.CreatedAt -> sortedByDescending { it.createdAt }
-                SortKey.Title -> sortedByDescending { it.title }
-            }
+    SortOrder.Desc -> {
+        when (sort.key) {
+            SortKey.CreatedAt -> sortedByDescending { it.createdAt }
+            SortKey.Title -> sortedByDescending { it.title }
         }
     }
 }
 
-fun Book.similarity(searchQuery: String): Double {
-    return maxOf(
-        Fuzzy.jaroWinklerSimilarity(searchQuery, title),
-        Fuzzy.jaroWinklerSimilarity(searchQuery, titleTranscription),
+fun Book.similarity(searchQuery: String): Double = maxOf(
+    Fuzzy.jaroWinklerSimilarity(searchQuery, title),
+    Fuzzy.jaroWinklerSimilarity(searchQuery, titleTranscription),
+    Fuzzy.jaroWinklerSimilarity(
+        searchQuery.katakanaToHiragana(),
+        titleTranscription.katakanaToHiragana(),
+    ),
+    Fuzzy.jaroWinklerSimilarity(
+        searchQuery.hiraganaToKatakana(),
+        titleTranscription.hiraganaToKatakana(),
+    ),
+    authors.maxOfOrNull { Fuzzy.jaroWinklerSimilarity(searchQuery, it.name) }
+        ?: Double.MIN_VALUE,
+    authors.maxOfOrNull { Fuzzy.jaroWinklerSimilarity(searchQuery, it.transcription) }
+        ?: Double.MIN_VALUE,
+    authors.maxOfOrNull {
         Fuzzy.jaroWinklerSimilarity(
             searchQuery.katakanaToHiragana(),
-            titleTranscription.katakanaToHiragana()
-        ),
+            it.transcription.katakanaToHiragana(),
+        )
+    } ?: Double.MIN_VALUE,
+    authors.maxOfOrNull {
         Fuzzy.jaroWinklerSimilarity(
             searchQuery.hiraganaToKatakana(),
-            titleTranscription.hiraganaToKatakana()
-        ),
-        authors.maxOfOrNull { Fuzzy.jaroWinklerSimilarity(searchQuery, it.name) }
-            ?: Double.MIN_VALUE,
-        authors.maxOfOrNull { Fuzzy.jaroWinklerSimilarity(searchQuery, it.transcription) }
-            ?: Double.MIN_VALUE,
-        authors.maxOfOrNull {
-            Fuzzy.jaroWinklerSimilarity(
-                searchQuery.katakanaToHiragana(),
-                it.transcription.katakanaToHiragana()
-            )
-        } ?: Double.MIN_VALUE,
-        authors.maxOfOrNull {
-            Fuzzy.jaroWinklerSimilarity(
-                searchQuery.hiraganaToKatakana(),
-                it.transcription.hiraganaToKatakana()
-            )
-        } ?: Double.MIN_VALUE,
-        Fuzzy.jaroWinklerSimilarity(searchQuery, description),
-    )
-}
+            it.transcription.hiraganaToKatakana(),
+        )
+    } ?: Double.MIN_VALUE,
+    Fuzzy.jaroWinklerSimilarity(searchQuery, description),
+)

@@ -9,6 +9,7 @@ plugins {
     alias(libs.plugins.kotlinSerialization)
     alias(libs.plugins.ksp)
     alias(libs.plugins.androidx.room)
+    id("com.myoshita.bookshelf.spotless")
 }
 
 kotlin {
@@ -22,7 +23,7 @@ kotlin {
     listOf(
         iosX64(),
         iosArm64(),
-        iosSimulatorArm64()
+        iosSimulatorArm64(),
     ).forEach { iosTarget ->
         iosTarget.binaries.framework {
             baseName = "ComposeApp"
@@ -85,7 +86,15 @@ room {
 
 android {
     namespace = "com.myoshita.bookshelf"
-    compileSdk = libs.versions.android.compileSdk.get().toInt()
+    compileSdk =
+        libs.versions.android.compileSdk
+            .get()
+            .toInt()
+
+    defaultConfig.minSdk =
+        libs.versions.android.minSdk
+            .get()
+            .toInt()
 
     sourceSets["main"].manifest.srcFile("src/androidMain/AndroidManifest.xml")
     sourceSets["main"].res.srcDirs("src/androidMain/res")
@@ -112,4 +121,3 @@ android {
         debugImplementation(libs.compose.ui.tooling.preview)
     }
 }
-

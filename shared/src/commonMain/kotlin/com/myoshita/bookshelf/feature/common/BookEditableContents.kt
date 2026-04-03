@@ -90,7 +90,7 @@ fun BookEditableList(
                 modifier = Modifier.clickable {
                     onClickUploadThumbnail()
                     isModalVisible = false
-                }
+                },
             )
             ListItem(
                 headlineContent = { Text("URLを編集") },
@@ -100,7 +100,7 @@ fun BookEditableList(
                 modifier = Modifier.clickable {
                     isThumbnailUrlEditMode = true
                     isModalVisible = false
-                }
+                },
             )
         }
     }
@@ -115,14 +115,14 @@ fun BookEditableList(
                     onClick = {
                         onBookValueUpdated(bookStateValue.copy(thumbnailUrl = thumbnailUrl))
                         isThumbnailUrlEditMode = false
-                    }
+                    },
                 ) {
                     Text(text = "OK")
                 }
             },
             dismissButton = {
                 TextButton(
-                    onClick = { isThumbnailUrlEditMode = false }
+                    onClick = { isThumbnailUrlEditMode = false },
                 ) {
                     Text(text = "キャンセル")
                 }
@@ -136,7 +136,7 @@ fun BookEditableList(
                         keyboardOptions = KeyboardOptions(
                             keyboardType = KeyboardType.Uri,
                         ),
-                        modifier = Modifier.focusRequester(focusRequester)
+                        modifier = Modifier.focusRequester(focusRequester),
                     )
                     LaunchedEffect(focusRequester) {
                         focusRequester.requestFocus()
@@ -160,7 +160,7 @@ fun BookEditableList(
                         }
                     }
                 }
-            }
+            },
         )
     }
 
@@ -209,32 +209,32 @@ fun BookEditableList(
                             bookStateValue.copy(
                                 authors = bookStateValue.authors.toMutableList().apply {
                                     remove(deletingAuthor)
-                                }
-                            )
+                                },
+                            ),
                         )
                         onDeletingAuthorUpdate(null)
-                    }
+                    },
                 ) {
                     Text("削除")
                 }
             },
             dismissButton = {
                 TextButton(
-                    onClick = { onDeletingAuthorUpdate(null) }
+                    onClick = { onDeletingAuthorUpdate(null) },
                 ) {
                     Text("キャンセル")
                 }
             },
             text = {
                 Text("著者「${deletingAuthor.name}」を削除しますか？")
-            }
+            },
         )
     }
 
     LazyColumn(
         verticalArrangement = Arrangement.spacedBy(8.dp),
         contentPadding = contentPadding + PaddingValues(horizontal = 8.dp),
-        modifier = modifier.imePadding()
+        modifier = modifier.imePadding(),
     ) {
         item {
             BookEditableListItem(
@@ -316,7 +316,7 @@ fun BookEditableList(
                 onValueChange = { onBookValueUpdated(bookStateValue.copy(extent = it.toInt())) },
                 keyboardOptions = KeyboardOptions(
                     keyboardType = KeyboardType.Number,
-                )
+                ),
             )
         }
         item {
@@ -350,7 +350,7 @@ fun BookEditableList(
             Spacer(
                 Modifier
                     .height(32.dp)
-                    .windowInsetsBottomHeight(WindowInsets.systemBars)
+                    .windowInsetsBottomHeight(WindowInsets.systemBars),
             )
         }
     }
@@ -402,9 +402,9 @@ private fun AuthorListItem(
                         Icon(
                             imageVector = Icons.Default.Close,
                             contentDescription = null,
-                            modifier = Modifier.clickable { onClickDelete(author) }
+                            modifier = Modifier.clickable { onClickDelete(author) },
                         )
-                    }
+                    },
                 )
             }
             InputChip(
@@ -416,7 +416,7 @@ private fun AuthorListItem(
                         imageVector = Icons.Default.Add,
                         contentDescription = null,
                     )
-                }
+                },
             )
         }
     }
@@ -533,7 +533,7 @@ private fun AuthorEditDialog(
                             leadingContent = {
                                 RadioButton(
                                     selected = selectedAuthor == author,
-                                    onClick = null
+                                    onClick = null,
                                 )
                             },
                             colors = ListItemDefaults.colors(
@@ -544,8 +544,8 @@ private fun AuthorEditDialog(
                                 onClick = {
                                     onValueChange(author)
                                     selectedAuthor = author
-                                }
-                            )
+                                },
+                            ),
                         )
                     }
                 }
@@ -555,7 +555,7 @@ private fun AuthorEditDialog(
                         label = "著者",
                         value = value.name,
                         onValueChange = { onValueChange(value.copy(name = it)) },
-                        modifier = modifier.focusRequester(focusRequester)
+                        modifier = modifier.focusRequester(focusRequester),
                     )
                     BookEditableListItem(
                         label = "著者 (読み)",
@@ -570,7 +570,7 @@ private fun AuthorEditDialog(
                 }
             }
         },
-        modifier = modifier
+        modifier = modifier,
     )
 
     LaunchedEffect(focusRequester) {

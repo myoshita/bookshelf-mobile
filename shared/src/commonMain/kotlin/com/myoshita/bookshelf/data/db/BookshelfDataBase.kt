@@ -13,7 +13,7 @@ import androidx.room.RoomDatabaseConstructor
         BookAuthorRelations::class,
         BookTagRelations::class,
     ],
-    version = 1
+    version = 1,
 )
 @ConstructedBy(BookshelfDataBaseConstructor::class)
 abstract class BookshelfDataBase : RoomDatabase() {

@@ -117,33 +117,33 @@ private fun ManualBookSearchScreen(
                     IconButton(
                         onClick = {
                             onNavigateUp()
-                        }
+                        },
                     ) {
                         Icon(
                             imageVector = Icons.AutoMirrored.Filled.ArrowBack,
                             contentDescription = null,
                         )
                     }
-                }
+                },
             )
         },
         snackbarHost = {
             SnackbarHost(
                 hostState = snackbarHostState,
-                modifier = Modifier.imePadding()
+                modifier = Modifier.imePadding(),
             )
         },
         content = { innerPadding ->
             Box(
                 modifier = Modifier
                     .padding(innerPadding)
-                    .fillMaxSize()
+                    .fillMaxSize(),
             ) {
                 LazyColumn(
                     contentPadding = PaddingValues(bottom = 100.dp),
                     modifier = Modifier
                         .fillMaxSize()
-                        .imePadding()
+                        .imePadding(),
                 ) {
                     stickyHeader {
                         OutlinedTextField(
@@ -154,7 +154,7 @@ private fun ManualBookSearchScreen(
                             trailingIcon = {
                                 IconButton(
                                     onClick = onClickSearch,
-                                    enabled = uiState.isbn.isNotEmpty()
+                                    enabled = uiState.isbn.isNotEmpty(),
                                 ) {
                                     Icon(
                                         imageVector = Icons.Default.Search,
@@ -168,7 +168,7 @@ private fun ManualBookSearchScreen(
                                 imeAction = ImeAction.Search,
                             ),
                             keyboardActions = KeyboardActions(
-                                onSearch = { onClickSearch() }
+                                onSearch = { onClickSearch() },
                             ),
                             modifier = Modifier
                                 .fillMaxSize()
@@ -184,7 +184,7 @@ private fun ManualBookSearchScreen(
                             bookInfo = bookInfo,
                             modifier = Modifier.clickable {
                                 onClickBookInfo(bookInfo)
-                            }
+                            },
                         )
                     }
                     item {
@@ -199,7 +199,7 @@ private fun ManualBookSearchScreen(
                         .align(Alignment.BottomCenter)
                         .padding(bottom = 16.dp)
                         .imePadding()
-                        .fillMaxWidth()
+                        .fillMaxWidth(),
                 ) {
                     Text(text = "登録")
                 }
@@ -212,7 +212,7 @@ private fun ManualBookSearchScreen(
                                 interactionSource = remember { MutableInteractionSource() },
                                 indication = null,
                                 onClick = {},
-                            )
+                            ),
                     ) {
                         CircularProgressIndicator(
                             modifier = Modifier.align(Alignment.Center),
@@ -220,7 +220,7 @@ private fun ManualBookSearchScreen(
                     }
                 }
             }
-        }
+        },
     )
 }
 
@@ -247,7 +247,7 @@ private fun BookItem(
                 contentDescription = null,
                 error = error,
                 contentScale = ContentScale.FillWidth,
-                modifier = Modifier.width(60.dp)
+                modifier = Modifier.width(60.dp),
             )
             Column(
                 verticalArrangement = Arrangement.spacedBy(8.dp),
@@ -262,24 +262,22 @@ private fun BookItem(
                     text = bookInfo.authors.joinToString(", ") { it.name },
                     maxLines = 1,
                     overflow = TextOverflow.Ellipsis,
-                    style = MaterialTheme.typography.labelSmall
+                    style = MaterialTheme.typography.labelSmall,
                 )
             }
         }
     }
 }
 
-private fun buildTitleText(bookInfo: BookInfo): String {
-    return buildString {
-        append(bookInfo.title)
-        if (bookInfo.volume != null) {
-            append(" ${bookInfo.volume}")
-        }
-        if (bookInfo.edition != null) {
-            append("<${bookInfo.edition}>")
-        }
-        if (bookInfo.seriesTitle.isNotEmpty()) {
-            append("(${bookInfo.seriesTitle})")
-        }
+private fun buildTitleText(bookInfo: BookInfo): String = buildString {
+    append(bookInfo.title)
+    if (bookInfo.volume != null) {
+        append(" ${bookInfo.volume}")
+    }
+    if (bookInfo.edition != null) {
+        append("<${bookInfo.edition}>")
+    }
+    if (bookInfo.seriesTitle.isNotEmpty()) {
+        append("(${bookInfo.seriesTitle})")
     }
 }

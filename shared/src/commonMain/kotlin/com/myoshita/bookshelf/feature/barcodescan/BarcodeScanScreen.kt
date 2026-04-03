@@ -79,14 +79,14 @@ fun BarcodeScanScreen(
                     IconButton(
                         onClick = {
                             onNavigateUp()
-                        }
+                        },
                     ) {
                         Image(
                             imageVector = Icons.AutoMirrored.Filled.ArrowBack,
                             contentDescription = null,
                         )
                     }
-                }
+                },
             )
         },
         content = { innerPadding ->
@@ -113,7 +113,7 @@ fun BarcodeScanScreen(
                                 enableTorch = false,
                                 modifier = Modifier
                                     .height(150.dp)
-                                    .clipToBounds()
+                                    .clipToBounds(),
                             )
                             TextField(
                                 value = uiState.inputIsbn,
@@ -132,7 +132,7 @@ fun BarcodeScanScreen(
                                         interactionSource = remember { MutableInteractionSource() },
                                         indication = null,
                                         onClick = {},
-                                    )
+                                    ),
                             ) {
                                 CircularProgressIndicator(
                                     modifier = Modifier.align(Alignment.Center),
@@ -144,7 +144,7 @@ fun BarcodeScanScreen(
                     Column(
                         horizontalAlignment = Alignment.CenterHorizontally,
                         verticalArrangement = Arrangement.spacedBy(16.dp),
-                        modifier = Modifier.verticalScroll(rememberScrollState())
+                        modifier = Modifier.verticalScroll(rememberScrollState()),
                     ) {
                         val error = rememberAsyncImagePainter(model = book.googleBookThumbnailUrl)
                         AsyncImage(
@@ -153,7 +153,7 @@ fun BarcodeScanScreen(
                             contentDescription = null,
                             contentScale = ContentScale.FillWidth,
                             modifier = Modifier.width(100.dp)
-                                .heightIn(max = 200.dp)
+                                .heightIn(max = 200.dp),
                         )
                         Text(book.toString())
                         Button(onClick = onClickReset) {
@@ -162,6 +162,6 @@ fun BarcodeScanScreen(
                     }
                 }
             }
-        }
+        },
     )
 }

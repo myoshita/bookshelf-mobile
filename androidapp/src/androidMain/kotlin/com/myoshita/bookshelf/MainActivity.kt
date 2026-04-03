@@ -24,9 +24,11 @@ class MainActivity : ComponentActivity() {
         val systemBarStyle = when (currentNightMode) {
             Configuration.UI_MODE_NIGHT_NO -> SystemBarStyle.light(
                 surfaceLight.toArgb(),
-                surfaceLight.toArgb()
+                surfaceLight.toArgb(),
             )
+
             Configuration.UI_MODE_NIGHT_YES -> SystemBarStyle.dark(surfaceDark.toArgb())
+
             else -> error("Illegal State, current mode is $currentNightMode")
         }
         enableEdgeToEdge(
@@ -40,7 +42,7 @@ class MainActivity : ComponentActivity() {
             App(
                 koinAppDeclaration = {
                     androidContext(this@MainActivity.applicationContext)
-                }
+                },
             )
         }
     }
@@ -53,6 +55,6 @@ fun AppAndroidPreview() {
     App(
         koinAppDeclaration = {
             androidContext(context)
-        }
+        },
     )
 }
